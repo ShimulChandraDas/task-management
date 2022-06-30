@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ToDo from './ToDo';
 
 const Home = () => {
     const [todos, setTodos] = useState([]);
@@ -6,9 +7,9 @@ const Home = () => {
         fetch(`http://localhost:5000/`)
         .then(res=>res.json())
         .then(result=>{
-            console.log('udated',result);
-            //setTodos(result)
-            
+            console.log(result[0]);
+            setTodos(result)
+
         })
     }, [])
 
@@ -20,14 +21,7 @@ const Home = () => {
         }
     };
 
-    const editTodo=()=>{
-        console.log('edit');
-    }
-
-    const deleteTodo=()=>{
-    console.log('delete');
-
-    }
+   
     
 
     return (
@@ -42,22 +36,15 @@ const Home = () => {
                         className="input input-bordered input-lg "
                     />
                 </div>
-                <div>
+                <div className='card max-w-lg bg-orange-300 shadow-xl image-full'>
                     {
-                        todos.map((todo, index) => 
-                        <div key={index} className='card max-w-lg bg-base-100 shadow-xl image-full'>
-                        <div  className='card-body'>
-                            <div>
-                            {todo} 
-
-                            <button onClick={editTodo} className='btn btn-sm'>Edit</button> 
-
-
-                            <button onClick={deleteTodo} className='btn btn-sm'>Delete</button>
-                        </div>
-                        </div>
-                        </div>)
+                        todos.map((todo,index)=>
+                        <ToDo
+                        todo={todo}
+                        key={index}>
+                        </ToDo>)
                     }
+                   
                 </div>
             </div>
         </div>

@@ -1,16 +1,17 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
     return (
         <div className="navbar text-white bg-green-600">
             <div className="flex-1">
-                <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                <NavLink to='/' className="btn btn-ghost normal-case text-xl">Task Managemnet</NavLink>
             </div>
             <div className="flex-none">
                 <div className="flex-none">
                     <ul className="menu menu-horizontal p-0">
                         <li><a>Completed Tasks</a></li>
-                        <li><a>To-Do</a></li>
+                        <li><NavLink to='/todo'>To-Do</NavLink></li>
                         <li><a>Calendar</a></li>
                     </ul>
                 </div>
