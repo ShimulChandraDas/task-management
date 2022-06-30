@@ -2,29 +2,29 @@ import React from 'react';
 
 const Navbar = () => {
     return (
-        <div class="navbar text-white bg-green-600">
-            <div class="flex-1">
-                <a class="btn btn-ghost normal-case text-xl">daisyUI</a>
+        <div className="navbar text-white bg-green-600">
+            <div className="flex-1">
+                <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
             </div>
-            <div class="flex-none">
-                <div class="flex-none">
-                    <ul class="menu menu-horizontal p-0">
+            <div className="flex-none">
+                <div className="flex-none">
+                    <ul className="menu menu-horizontal p-0">
                         <li><a>Completed Tasks</a></li>
                         <li><a>To-Do</a></li>
                         <li><a>Calendar</a></li>
                     </ul>
                 </div>
-                <div class="dropdown dropdown-end">
-                    <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-                        <div class="w-10 rounded-full">
+                <div className="dropdown dropdown-end">
+                    <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
+                        <div className="w-10 rounded-full">
                             <img src="https://placeimg.com/80/80/people" />
                         </div>
                     </label>
-                    <ul tabindex="0" class="menu menu-compact dropdown-content bg-green-600 mt-3 p-2 shadow  rounded-box w-52">
+                    <ul tabIndex="0" className="menu menu-compact dropdown-content bg-green-600 mt-3 p-2 shadow  rounded-box w-52">
                         <li className=''>
-                            <a class="justify-between">
+                            <a className="justify-between">
                                 Profile
-                                <span class="badge">New</span>
+                                <span className="badge">New</span>
                             </a>
                         </li>
                         <li><a>Settings</a></li>

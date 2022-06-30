@@ -1,77 +1,64 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const Home = ({ inputText, setInputText, todos, setTodos, setStatus }) => {
-
-    const inputTextHandler = (e) => {
-        console.log(e.target.value);
-        setInputText(e.target.value);
-    };
+const Home = () => {
+    const [todos, setTodos] = useState([]);
+    useEffect(() => {
+        fetch(`http://localhost:5000/`)
+        .then(res=>res.json())
+        .then(result=>{
+            console.log('udated',result);
+            //setTodos(result)
+            
+        })
+    }, [])
 
     const submitTodoHandler = (e) => {
-        e.preventDefault();
-        setTodos([
-            ...todos,
-            { text: inputText, completed: false, id: Math.random() * 5000 },
-        ]);
-        setInputText("");
+        if (e.key === 'Enter') {
+            if (e.target.value !== '') {
+                setTodos((todos) => [...todos, e.target.value])
+            }
+        }
     };
 
-    const statusHandler = (e) => {
-        setStatus(e.target.value);
-    };
+    const editTodo=()=>{
+        console.log('edit');
+    }
+
+    const deleteTodo=()=>{
+    console.log('delete');
+
+    }
+    
+
     return (
         <div>
-            <div class=" h-64 " >
-                <div class="hero-overlay flex items-center justify-center bg-opacity-60">
+            <div className=" h-64 " >
+                <div className="hero-overlay flex items-center justify-center bg-opacity-60">
 
-                    <input type="text"
+                    <input
+                        onKeyDown={submitTodoHandler}
+                        type="text"
                         placeholder="Add To-Do"
-                        class="input input-bordered input-lg "
-                    ></input>
+                        className="input input-bordered input-lg "
+                    />
                 </div>
+                <div>
+                    {
+                        todos.map((todo, index) => 
+                        <div key={index} className='card max-w-lg bg-base-100 shadow-xl image-full'>
+                        <div  className='card-body'>
+                            <div>
+                            {todo} 
 
-                {/* <div className="form">
-                    <form>
-                        <input
-                            onChange={inputTextHandler}
-                            type="text"
-                            className="todo-input"
-                            value={inputText}
-                            placeholder={"New Todo....."}
-                        />
-                        <button
-                            type="submit"
-                            className="todo-submit"
-                            onClick={submitTodoHandler}
-                        ></button>
-                    </form>
-                    <div className="filters">
-                        <div name="todos" onChange={statusHandler}>
-                            <input
-                                type="radio"
-                                id="radio-all"
-                                value="all"
-                                name="status"
-                                defaultChecked
-                            />{" "}
-                            <label for="radio-all">All</label>
-                            <input
-                                type="radio"
-                                id="radio-active"
-                                value="active"
-                                name="status"
-                            />{" "}
-                            <label for="radio-active">Active</label>
-                            <input
-                                type="radio"
-                                id="radio-completed"
-                                value="completed"
-                                name="status"
-                            />{" "}
-                            <label for="radio-completed">Completed</label>
+                            <button onClick={editTodo} className='btn btn-sm'>Edit</button> 
+
+
+                            <button onClick={deleteTodo} className='btn btn-sm'>Delete</button>
                         </div>
-                    </div>
-                </div> */}
+                        </div>
+                        </div>)
+                    }
+                </div>
             </div>
         </div>
     );
